@@ -1864,27 +1864,39 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8" data-aos="fade-up">
                     <div class="contact-form">
-                        <form id="contactForm">
+                        <form id="contactForm" action="https://formsubmit.co/justine.evora@student.ateneo.edu" method="POST">
+                            <!-- FormSubmit configuration -->
+                            <input type="hidden" name="_subject" value="New contact from portfolio website!">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_next" value="https://wondersbyjustine.com/thankyou.html">
+                            
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Your Name" required>
+                                        <input type="text" name="name" class="form-control" placeholder="Your Name" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="email" class="form-control" placeholder="Your Email" required>
+                                        <input type="email" name="email" class="form-control" placeholder="Your Email" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Subject" required>
+                                <input type="text" name="subject" class="form-control" placeholder="Subject" required>
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" placeholder="Your Message" required></textarea>
+                                <textarea name="message" class="form-control" placeholder="Your Message" required></textarea>
                             </div>
                             <button type="submit" class="btn-custom">Send Message</button>
                         </form>
+                    </div>
+                    
+                    <!-- Added Contact Information -->
+                    <div class="contact-info mt-5 text-center">
+                        <h3 class="mb-4" style="color: var(--primary);">Contact Information</h3>
+                        <p><i class="fas fa-envelope me-2" style="color: var(--yellow);"></i> justine.evora@student.ateneo.edu</p>
                     </div>
                 </div>
                 <div class="social-links">
@@ -1895,7 +1907,10 @@
                         <i class="fab fa-linkedin-in"></i>
                     </a>
                     <a href="https://www.facebook.com/evorajustine10/" class="social-link" title="Facebook">
-                        <i class="fab fa-twitter"></i>
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="mailto:justine.evora@student.ateneo.edu" class="social-link" title="Email">
+                        <i class="fas fa-envelope"></i>
                     </a>
                 </div>
             </div>
@@ -2174,9 +2189,7 @@
             
             // Contact form submission
             $('#contactForm').on('submit', function(e) {
-                e.preventDefault();
-                
-                // Simple validation feedback
+                // Form validation
                 const formFields = $(this).find('.form-control');
                 let isValid = true;
                 
@@ -2189,19 +2202,29 @@
                     }
                 });
                 
-                if (isValid) {
-                    // Here you would typically send the form data to a server
-                    // For demo purposes, we'll just show a success message
-                    $(this).html('<div class="text-center"><h4 style="color:var(--yellow);font-size:1.5rem;margin-bottom:15px;">Message Sent Successfully!</h4><p>Thank you for reaching out. I\'ll get back to you very soon.</p></div>');
+                if (!isValid) {
+                    e.preventDefault(); // Prevent form submission if validation fails
+                    return false;
                 }
+                
+                // If using ajax instead of form action, you would add your ajax code here
+                // The current implementation uses formsubmit.co's direct form submission
+                
+                // Show loading state if needed
+                $(this).find('button[type="submit"]').html('<i class="fas fa-spinner fa-spin"></i> Sending...');
+                
+                // Since we're using formsubmit.co's direct form submission,
+                // we don't need to prevent the default form submission
+                // The form will automatically redirect to the _next URL after submission
             });
-            
+
             // Reset form validation on input
             $('.form-control').on('input', function() {
                 if ($(this).val().trim() !== '') {
                     $(this).removeClass('is-invalid');
                 }
             });
+
             
             // Check if skills are in viewport on page load
             if (isInViewport(skillsSection)) {
