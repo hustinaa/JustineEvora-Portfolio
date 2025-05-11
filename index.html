@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Tech Portfolio</title>
+    <title>WondersByJustine</title>
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -20,14 +20,28 @@
     <style>
         /* ====== BASE STYLES ====== */
         :root {
-            --primary: #FFD166; /* Yellow (favorite color) */
-            --secondary: #26547C; /* Dark blue */
-            --accent: #06D6A0; /* Teal */
-            --dark: #333333;
-            --light: #F5F5F5;
-            --white: #FFFFFF;
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
+            /* Modern color palette with yellow accent */
+            --primary: #5e60ce; /* Vibrant purple */
+            --primary-light: #6930c3; /* Lighter purple */
+            --secondary: #252b36; /* Dark blue-gray */
+            --secondary-light: #2c333e; /* Lighter dark blue-gray */
+            --accent: #64dfdf; /* Turquoise */
+            --yellow: #ffbf2a; /* Warm yellow accent */
+            --yellow-light: #FFE066; /* Lighter yellow */
+            --gradient-1: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            --gradient-2: linear-gradient(135deg, var(--accent) 0%, #56cfe1 100%);
+            --gradient-yellow: linear-gradient(135deg, var(--yellow) 0%, var(--yellow-light) 100%);
+            --dark: #121212;
+            --gray: #666;
+            --light-gray: #f0f0f0;
+            --white: #ffffff;
+            --shadow-sm: 0 5px 15px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 30px 60px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --border-radius-sm: 8px;
+            --border-radius-md: 12px;
+            --border-radius-lg: 20px;
         }
         
         * {
@@ -37,53 +51,94 @@
         }
         
         body {
-            font-family: 'Open Sans', sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--secondary);
             overflow-x: hidden;
             background-color: var(--white);
         }
         
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Poppins', sans-serif;
             font-weight: 700;
             line-height: 1.3;
+            color: var(--secondary);
         }
         
         a {
             text-decoration: none;
-            color: var(--secondary);
+            color: var(--primary);
             transition: var(--transition);
         }
         
         a:hover {
-            color: var(--primary);
+            color: var(--primary-light);
         }
         
         img {
             max-width: 100%;
+            border-radius: var(--border-radius-md);
         }
         
         section {
-            padding: 100px 0;
+            padding: 120px 0;
+            position: relative;
+        }
+        
+        section:nth-child(even) {
+            background-color: var(--light-gray);
         }
         
         .btn-custom {
-            background-color: var(--secondary);
+            background: var(--gradient-1);
             color: var(--white);
             border: none;
-            padding: 12px 30px;
+            padding: 14px 32px;
             border-radius: 50px;
             font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 0.5px;
             transition: var(--transition);
             display: inline-block;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn-custom::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-yellow);
+            transition: var(--transition);
+            z-index: -1;
+            opacity: 0;
         }
         
         .btn-custom:hover {
-            background-color: var(--primary);
             color: var(--dark);
             transform: translateY(-3px);
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn-custom:hover::before {
+            opacity: 1;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            box-shadow: none;
+        }
+        
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--white);
         }
         
         .section-title {
@@ -92,45 +147,98 @@
             position: relative;
         }
         
-        .section-title::after {
+        .section-title h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .section-title h2::before {
             content: '';
             position: absolute;
-            width: 80px;
+            width: 70px;
             height: 4px;
-            background-color: var(--primary);
-            bottom: -15px;
+            background: var(--gradient-yellow);
+            bottom: 0;
             left: 50%;
             transform: translateX(-50%);
+            border-radius: 50px;
+        }
+        
+        .section-title p {
+            max-width: 650px;
+            margin: 0 auto;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+        
+        /* Accent shapes */
+        .shape-1 {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: var(--gradient-2);
+            opacity: 0.1;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            z-index: -1;
+        }
+        
+        .shape-2 {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: var(--gradient-1);
+            opacity: 0.1;
+            border-radius: 46% 54% 36% 64% / 41% 44% 56% 59%;
+            z-index: -1;
         }
         
         /* ====== NAVBAR ====== */
         .navbar {
             padding: 20px 0;
             transition: var(--transition);
-            background-color: var(--white);
+            background-color: transparent;
         }
         
         .navbar.scrolled {
-            padding: 10px 0;
-            box-shadow: var(--shadow);
+            padding: 15px 0;
+            background-color: var(--white);
+            box-shadow: var(--shadow-sm);
         }
         
         .navbar-brand {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Poppins', sans-serif;
             font-weight: 700;
             font-size: 1.8rem;
-            color: var(--dark);
+            color: var(--primary);
+            position: relative;
         }
         
         .navbar-brand span {
-            color: var(--primary);
+            color: var(--yellow);
+            position: relative;
+        }
+        
+        .navbar-brand span::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: var(--yellow);
+            border-radius: 50%;
+            bottom: 0;
+            right: -12px;
         }
         
         .nav-link {
-            font-weight: 600;
-            margin-left: 15px;
+            font-weight: 500;
+            margin-left: 25px;
             position: relative;
             padding: 8px 0;
+            color: var(--secondary);
+            font-size: 16px;
         }
         
         .nav-link::after {
@@ -138,33 +246,40 @@
             position: absolute;
             width: 0;
             height: 2px;
-            background-color: var(--primary);
+            background: var(--gradient-1);
             bottom: 0;
             left: 0;
             transition: var(--transition);
+            border-radius: 50px;
         }
         
-        .nav-link:hover::after {
+        .nav-link:hover, .nav-link:focus {
+            color: var(--primary);
+        }
+        
+        .nav-link:hover::after, .nav-link:focus::after {
             width: 100%;
         }
         
         /* ====== HERO SECTION ====== */
         .hero {
             height: 100vh;
-            background-color: var(--light);
+            min-height: 700px;
+            background-color: var(--white);
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
         }
         
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255, 209, 102, 0.2) 0%, rgba(38, 84, 124, 0.1) 100%);
-            z-index: 1;
+        .hero .shape-1 {
+            top: 15%;
+            left: 5%;
+        }
+        
+        .hero .shape-2 {
+            bottom: 10%;
+            right: 5%;
         }
         
         .hero-content {
@@ -173,38 +288,148 @@
         }
         
         .hero h1 {
-            font-size: 4rem;
+            font-size: 4.5rem;
             margin-bottom: 20px;
+            line-height: 1.1;
         }
         
         .hero h1 span {
             color: var(--primary);
             position: relative;
+            display: inline-block;
         }
         
         .hero h1 span::after {
             content: '';
             position: absolute;
             width: 100%;
-            height: 10px;
-            background-color: rgba(255, 209, 102, 0.3);
-            bottom: 5px;
+            height: 12px;
+            background-color: var(--yellow);
+            opacity: 0.4;
+            bottom: 10px;
             left: 0;
             z-index: -1;
+            border-radius: 50px;
         }
         
         .hero p {
             font-size: 1.5rem;
             margin-bottom: 30px;
-            color: var(--secondary);
+            color: var(--gray);
+            max-width: 600px;
+        }
+
+        /* Hero Section Social Links Styles */
+        .hero-social-links {
+            display: flex;
+            margin-top: 25px;
+        }
+
+        .hero-social-link {
+            width: 45px;
+            height: 45px;
+            background-color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary);
+            font-size: 18px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .hero-social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            transition: var(--transition);
+            z-index: -1;
+            opacity: 0;
+        }
+
+        .hero-social-link:hover {
+            color: var(--white);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .hero-social-link:hover::before {
+            opacity: 1;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 767px) {
+            .hero-social-link {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+                margin-right: 12px;
+            }
+        }
+
+        .hero-image {
+            position: relative;
+            max-width: 400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            width: 330px;
+            height: 330px;
+            border-radius: 50%;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            z-index: 2;
+            object-fit: cover;
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: var(--accent);
+            top: -5px;
+            left: 45%; /* Offset to the left slightly */
+            transform: translateX(-50%) rotate(-8deg); /* Add rotation for slant effect */
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: var(--yellow);
+            bottom: 20px;
+            right: 55px;
+            border-radius: 50%;
+            z-index: 3;
         }
         
         /* ====== ABOUT SECTION ====== */
         .about-img {
             position: relative;
-            border-radius: 10px;
+            border-radius: var(--border-radius-md);
             overflow: hidden;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .about-img img {
+            border-radius: var(--border-radius-md);
+            transition: transform 0.5s ease;
         }
         
         .about-img::before {
@@ -212,144 +437,241 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            background-color: rgba(6, 214, 160, 0.2);
+            background: var(--gradient-1);
             top: 0;
             left: 0;
             opacity: 0;
             transition: var(--transition);
+            z-index: 1;
+        }
+        
+        .about-img:hover img {
+            transform: scale(1.05);
         }
         
         .about-img:hover::before {
-            opacity: 1;
+            opacity: 0.2;
         }
         
         .about-text {
             padding: 0 20px;
         }
         
-        .about-text p {
+        .about-text h3 {
+            font-size: 2rem;
             margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .about-text p {
+            margin-bottom: 25px;
+            color: var(--gray);
+            font-size: 17px;
         }
         
         /* Skills */
         .skills {
-            margin-top: 40px;
+            margin-top: 50px;
         }
         
         .skills h3 {
-            margin-bottom: 25px;
-            font-size: 1.8rem;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            color: var(--primary);
         }
         
         .skill-item {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
+            background-color: var(--white);
+            padding: 25px;
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
         }
         
         .skill-info {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
         }
         
         .skill-info h4 {
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        .skill-info span {
+            font-weight: 500;
+            color: var(--yellow);
         }
         
         .progress {
             height: 10px;
-            background-color: var(--light);
+            background-color: var(--light-gray);
             border-radius: 50px;
             box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
         }
         
         .progress-bar {
-            background-color: var(--primary);
+            background: var(--gradient-1);
             border-radius: 50px;
             position: relative;
-            transition: width 1.5s ease-in-out;
+            transition: width 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
         
         /* Hobbies */
         .hobbies {
-            margin-top: 50px;
+            margin-top: 60px;
         }
         
         .hobbies h3 {
-            margin-bottom: 25px;
-            font-size: 1.8rem;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            color: var(--primary);
         }
         
         .hobby-item {
             background-color: var(--white);
-            border-radius: 10px;
-            padding: 20px;
+            border-radius: var(--border-radius-md);
+            padding: 30px 20px;
             text-align: center;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-sm);
             transition: var(--transition);
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            height: 100%;
+        }
+        
+        .hobby-item::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            transition: var(--transition);
+            z-index: -1;
+            opacity: 0;
         }
         
         .hobby-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-md);
         }
         
-        .hobby-icon {
-            width: 60px;
-            height: 60px;
-            background-color: var(--light);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 15px;
+        .hobby-item:hover::before {
+            top: 0;
+            opacity: 0.05;
         }
         
-        .hobby-icon i {
-            font-size: 24px;
+        .hobby-item:hover .hobby-icon {
+            background: var(--gradient-1);
+            transform: rotateY(180deg);
+        }
+        
+        .hobby-item:hover .hobby-icon i {
+            color: var(--white);
+            transform: rotateY(180deg);
+        }
+        
+        .hobby-item:hover h4 {
             color: var(--primary);
         }
         
+        .hobby-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--light-gray);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            transition: var(--transition);
+        }
+        
+        .hobby-icon i {
+            font-size: 32px;
+            color: var(--yellow);
+            transition: var(--transition);
+        }
+        
         .hobby-item h4 {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            transition: var(--transition);
         }
         
         /* ====== PORTFOLIO SECTION ====== */
         .portfolio {
-            background-color: var(--light);
+            position: relative;
+            overflow: hidden;
+            background-color: var(--light-gray);
+        }
+        
+        .portfolio .shape-1 {
+            top: 10%;
+            right: 5%;
+        }
+        
+        .portfolio .shape-2 {
+            bottom: 10%;
+            left: 5%;
         }
         
         .portfolio-filter {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 1;
         }
         
         .filter-btn {
             background-color: var(--white);
-            color: var(--dark);
+            color: var(--secondary);
             border: none;
-            padding: 10px 25px;
-            margin: 5px;
+            padding: 12px 30px;
+            margin: 8px;
             border-radius: 50px;
-            font-weight: 600;
+            font-weight: 500;
+            font-size: 16px;
             cursor: pointer;
             transition: var(--transition);
+            box-shadow: var(--shadow-sm);
         }
         
-        .filter-btn.active, .filter-btn:hover {
-            background-color: var(--primary);
-            color: var(--dark);
+        .filter-btn.active {
+            background: var(--gradient-1);
+            color: var(--white);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .filter-btn:hover {
+            background: var(--gradient-yellow);
+            color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
         }
         
         .portfolio-item {
-            margin-bottom: 30px;
-            border-radius: 10px;
+            margin-bottom: 40px;
+            border-radius: var(--border-radius-md);
             overflow: hidden;
             position: relative;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-md);
             display: none;
+            transition: var(--transition);
         }
         
         .portfolio-item.show {
@@ -358,8 +680,13 @@
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
         }
         
         .portfolio-img {
@@ -368,10 +695,11 @@
         }
         
         .portfolio-img img {
-            transition: transform 0.5s ease;
+            transition: transform 0.8s ease;
             height: 250px;
             width: 100%;
             object-fit: cover;
+            border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
         }
         
         .portfolio-overlay {
@@ -380,7 +708,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(38, 84, 124, 0.9);
+            background: linear-gradient(to top, rgba(94, 96, 206, 0.9), rgba(100, 223, 223, 0.7));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -389,18 +717,28 @@
         }
         
         .portfolio-overlay a {
-            width: 50px;
-            height: 50px;
-            background-color: var(--primary);
+            width: 60px;
+            height: 60px;
+            background-color: var(--white);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--dark);
-            margin: 0 5px;
-            transform: translateY(20px);
+            color: var(--primary);
+            margin: 0 10px;
+            transform: translateY(30px);
             opacity: 0;
-            transition: all 0.4s ease;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .portfolio-overlay a:nth-child(2) {
+            transition-delay: 0.1s;
+        }
+        
+                    .portfolio-overlay a:hover {
+            background: var(--gradient-yellow);
+            color: var(--dark);
         }
         
         .portfolio-item:hover .portfolio-overlay {
@@ -417,43 +755,72 @@
         }
         
         .portfolio-content {
-            padding: 20px;
+            padding: 25px;
             background-color: var(--white);
+            border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
         }
         
         .portfolio-content h4 {
             margin-bottom: 10px;
+            font-size: 1.3rem;
+            color: var(--primary);
+            transition: var(--transition);
         }
         
         .portfolio-content p {
-            color: #777;
-            font-size: 0.9rem;
+            color: var(--gray);
+            font-size: 0.95rem;
         }
         
         /* ====== AWARDS SECTION ====== */
         .awards {
             background-color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .awards .shape-1 {
+            bottom: 15%;
+            right: 10%;
+        }
+        
+        .awards .shape-2 {
+            top: 10%;
+            left: 5%;
         }
         
         .awards-tabs {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 1;
         }
         
         .year-tab {
-            padding: 10px 25px;
-            margin: 5px;
-            background-color: var(--light);
+            padding: 12px 30px;
+            margin: 8px;
+            background-color: var(--light-gray);
             border-radius: 50px;
             cursor: pointer;
             transition: var(--transition);
-            font-weight: 600;
+            font-weight: 500;
+            font-size: 16px;
+            box-shadow: var(--shadow-sm);
         }
         
-        .year-tab.active, .year-tab:hover {
-            background-color: var(--primary);
+        .year-tab.active {
+            background: var(--gradient-1);
+            color: var(--white);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .year-tab:hover {
+            background: var(--gradient-yellow);
+            color: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
         }
         
         .awards-content {
@@ -467,21 +834,37 @@
         
         .award-item {
             background-color: var(--white);
-            border-radius: 10px;
+            border-radius: var(--border-radius-md);
             overflow: hidden;
-            box-shadow: var(--shadow);
-            margin-bottom: 30px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 40px;
             cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .award-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 0;
+            background: var(--gradient-1);
             transition: var(--transition);
         }
         
         .award-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .award-item:hover::before {
+            height: 100%;
         }
         
         .award-img {
-            height: 200px;
+            height: 220px;
             overflow: hidden;
         }
         
@@ -489,7 +872,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.8s ease;
+            border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
         }
         
         .award-item:hover .award-img img {
@@ -497,17 +881,30 @@
         }
         
         .award-content {
-            padding: 20px;
+            padding: 25px;
+            position: relative;
         }
         
         .award-content h4 {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+            transition: var(--transition);
+        }
+        
+        .award-item:hover .award-content h4 {
+            color: var(--primary);
+            transform: translateX(10px);
         }
         
         .award-content p {
-            color: #777;
-            font-size: 0.9rem;
+            color: var(--gray);
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+        
+        .award-item:hover .award-content p {
+            transform: translateX(10px);
         }
         
         /* Award Popup */
@@ -517,14 +914,14 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.75);
+            background-color: rgba(18, 18, 18, 0.85);
             z-index: 9999;
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
         
         .awards-popup.open {
@@ -534,13 +931,25 @@
         
         .popup-inner {
             width: 90%;
-            max-width: 600px;
+            max-width: 700px;
             background-color: var(--white);
-            border-radius: 10px;
-            padding: 40px;
+            border-radius: var(--border-radius-lg);
+            padding: 50px;
             position: relative;
             transform: scale(0.8);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+        
+        .popup-inner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-1);
         }
         
         .awards-popup.open .popup-inner {
@@ -551,26 +960,38 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            width: 40px;
-            height: 40px;
-            background-color: var(--light);
+            width: 45px;
+            height: 45px;
+            background-color: var(--light-gray);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: var(--transition);
+            z-index: 2;
         }
         
         .popup-close:hover {
-            background-color: var(--primary);
+            background: var(--gradient-1);
+            transform: rotate(90deg);
+        }
+        
+        .popup-close:hover i {
+            color: var(--white);
         }
         
         .popup-title {
             text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--light-gray);
+            position: relative;
+        }
+        
+        .popup-title h3 {
+            font-size: 2rem;
+            color: var(--primary);
         }
         
         .award-list {
@@ -580,10 +1001,11 @@
         
         .award-list-item {
             display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--light-gray);
+            transition: var(--transition);
         }
         
         .award-list-item:last-child {
@@ -592,44 +1014,85 @@
             border-bottom: none;
         }
         
+        .award-list-item:hover .award-icon {
+            background: var(--gradient-1);
+            transform: rotate(10deg);
+        }
+        
+        .award-list-item:hover .award-icon i {
+            color: var(--white);
+        }
+        
         .award-icon {
-            width: 60px;
-            height: 60px;
-            background-color: var(--light);
-            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            background-color: var(--light-gray);
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 20px;
+            margin-right: 25px;
             flex-shrink: 0;
+            transition: var(--transition);
         }
         
         .award-icon i {
-            font-size: 24px;
+            font-size: 28px;
             color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .award-details {
+            flex-grow: 1;
         }
         
         .award-details h5 {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
         }
         
         .award-details p {
-            font-size: 0.9rem;
-            color: #777;
+            font-size: 1rem;
+            color: var(--gray);
             margin: 0;
         }
         
         /* ====== CONTACT SECTION ====== */
         .contact {
-            background-color: var(--light);
+            background-color: var(--light-gray);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact .shape-1 {
+            top: 10%;
+            left: 5%;
+        }
+        
+        .contact .shape-2 {
+            bottom: 10%;
+            right: 10%;
         }
         
         .contact-form {
             background-color: var(--white);
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
+            padding: 50px;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-md);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-1);
+            border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
         }
         
         .form-group {
@@ -637,11 +1100,13 @@
         }
         
         .form-control {
-            height: 55px;
-            border: 2px solid #eee;
-            border-radius: 5px;
-            padding: 0 20px;
+            height: 60px;
+            border: 2px solid var(--light-gray);
+            border-radius: var(--border-radius-sm);
+            padding: 0 25px;
+            font-size: 16px;
             transition: var(--transition);
+            color: var(--secondary);
         }
         
         .form-control:focus {
@@ -650,79 +1115,148 @@
         }
         
         textarea.form-control {
-            height: 180px;
-            padding: 15px 20px;
+            height: 200px;
+            padding: 20px 25px;
             resize: none;
         }
         
         .social-links {
             display: flex;
             justify-content: center;
-            margin-top: 40px;
+            margin-top: 50px;
         }
         
         .social-link {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             background-color: var(--white);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 10px;
-            color: var(--dark);
-            font-size: 20px;
-            box-shadow: var(--shadow);
+            margin: 0 12px;
+            color: var(--primary);
+            font-size: 22px;
+            box-shadow: var(--shadow-sm);
             transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            transition: var(--transition);
+            z-index: -1;
+            opacity: 0;
         }
         
         .social-link:hover {
-            background-color: var(--primary);
-            transform: translateY(-5px);
+            color: var(--white);
+            transform: translateY(-10px) rotate(10deg);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .social-link:hover::before {
+            opacity: 1;
         }
         
         /* ====== FOOTER ====== */
         footer {
             background-color: var(--secondary);
-            padding: 25px 0;
+            padding: 30px 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
         
         footer p {
             color: var(--white);
             margin: 0;
+            font-size: 16px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        footer a {
+            color: var(--yellow);
+        }
+        
+        footer a:hover {
+            color: var(--white);
         }
         
         /* ====== RESPONSIVE ====== */
+        @media (max-width: 1199px) {
+            .hero h1 {
+                font-size: 4rem;
+            }
+        }
+        
         @media (max-width: 991px) {
             section {
-                padding: 80px 0;
+                padding: 100px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
             }
             
             .hero h1 {
                 font-size: 3.5rem;
             }
             
+            .hero-image {
+                position: relative;
+                max-width: 300px; /* Limit the overall size */
+                margin: 0 auto; /* Center the image if needed */
+            }
+            
             .about-text {
-                margin-top: 40px;
+                margin-top: 50px;
+            }
+            
+            .contact-form {
+                padding: 40px;
             }
         }
         
         @media (max-width: 767px) {
             section {
-                padding: 60px 0;
+                padding: 80px 0;
             }
             
             .section-title {
                 margin-bottom: 40px;
             }
             
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                min-height: 600px;
+                height: auto;
+                padding-top: 120px;
+                padding-bottom: 80px;
+            }
+            
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
             
             .hero p {
                 font-size: 1.2rem;
+            }
+            
+            .about-text h3, .skills h3, .hobbies h3 {
+                font-size: 1.8rem;
             }
             
             .portfolio-filter {
@@ -730,23 +1264,46 @@
                 align-items: center;
             }
             
-            .filter-btn {
+            .filter-btn, .year-tab {
                 margin-bottom: 10px;
                 width: 80%;
             }
             
             .award-item {
-                margin-bottom: 20px;
+                margin-bottom: 30px;
             }
             
             .popup-inner {
                 padding: 30px;
             }
+            
+            .popup-title h3 {
+                font-size: 1.8rem;
+            }
+            
+            .award-details h5 {
+                font-size: 1.2rem;
+            }
+            
+            .contact-form {
+                padding: 30px;
+            }
+            
+            .social-link {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+                margin: 0 8px;
+            }
         }
         
         @media (max-width: 575px) {
+            section {
+                padding: 70px 0;
+            }
+            
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
             .hero p {
@@ -754,11 +1311,17 @@
             }
             
             .btn-custom {
-                padding: 10px 20px;
+                padding: 12px 25px;
+                font-size: 15px;
             }
             
             .navbar-brand {
                 font-size: 1.5rem;
+            }
+            
+            .award-icon {
+                width: 60px;
+                height: 60px;
             }
         }
     </style>
@@ -767,7 +1330,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#"><span>Justine Anne</span>Evora</a>
+            <a class="navbar-brand" href="#"><span>wondersby</span>justine</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -795,12 +1358,32 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <div class="shape-1"></div>
+        <div class="shape-2"></div>
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8 hero-content" data-aos="fade-right" data-aos-duration="1000">
-                    <h1>Hi, I'm <span>Justine Anne</span></h1>
-                    <p>All for the love of tech and art!</p>
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-6 hero-content" data-aos="fade-right" data-aos-duration="1000">
+                    <h1>Hi, I'm <span>Justine Evora</span></h1>
+                    <p>All for the love of art and user-centric technology.</p>
                     <a href="#portfolio" class="btn-custom">View My Works</a>
+                    
+                    <!-- Added Social Links for Hero Section -->
+                    <div class="hero-social-links mt-4">
+                        <a href="https://github.com/hustinaa" class="hero-social-link" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/evorajustine/" class="hero-social-link" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://www.facebook.com/evorajustine10/" class="hero-social-link" title="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="hero-image">
+                        <img src="static/justine.jpg" alt="Hero Image" class="img">
+                    </div>
                 </div>
             </div>
         </div>
@@ -809,71 +1392,88 @@
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">About Me</h2>
+            <div class="section-title" data-aos="fade-up">
+                <h2>About Me</h2>
+                <p>Get to know me better — my background, skills, and what drives my passion for technology and art.</p>
+            </div>
             <div class="row">
-                <div class="col-lg-4" data-aos="fade-right" data-aos-duration="1000">
+                <div class="col-lg-5" data-aos="fade-right" data-aos-duration="1000">
                     <div class="about-img">
-                        <img src="https://via.placeholder.com/400x500" alt="Profile Image" class="img-fluid">
+                        <img src="static/justine2.png" alt="Profile Image" class="img-fluid">
                     </div>
                 </div>
-                <div class="col-lg-8" data-aos="fade-left" data-aos-duration="1000">
+                <div class="col-lg-7" data-aos="fade-left" data-aos-duration="1000">
                     <div class="about-text">
-                        <p>Hello! I'm a tech enthusiast and creative artist currently pursuing my degree in Computer Science. As a student, I'm passionate about combining technology and art to create innovative solutions.</p>
-                        <p>With a strong foundation in both technical and artistic disciplines, I approach problems from unique perspectives. I'm currently seeking internship opportunities where I can apply my skills and gain valuable industry experience.</p>
+                        <h3>Tech Enthusiast & Creative Developer</h3>
+                        <p>Hola! I'm a passionate tech enthusiast and creative developer currently pursuing my degree in Management Information Systems at Ateneo de Manila University, with a specialization in Data Science and Analytics.  I’ve always been drawn to how technology and creativity can work together to build things that are not only functional but also meaningful.</p>
+                        <p>I enjoy solving problems, designing intuitive experiences, and finding ways to make tech more human. Whether it’s through data, design, or development, I’m always exploring how to connect different ideas and turn them into something useful.</p>
+                        <p>Right now, I’m looking for internship opportunities where I can keep learning, grow my skills, and gain hands-on experience in the industry.</p>
                         
                         <!-- Skills -->
                         <div class="skills">
-                            <h3>My Skills</h3>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <h4>Web Development</h4>
-                                    <h4>90%</h4>
+                            <h3>My Expertise</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="skill-item">
+                                        <div class="skill-info">
+                                            <h4>Web Development</h4>
+                                            <span>70%</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 0%" data-width="70"></div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 0%" data-width="90"></div>
+                                <div class="col-md-6">
+                                    <div class="skill-item">
+                                        <div class="skill-info">
+                                            <h4>UI/UX Design</h4>
+                                            <span>80%</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 0%" data-width="80"></div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <h4>UI/UX Design</h4>
-                                    <h4>85%</h4>
+                                <div class="col-md-6">
+                                    <div class="skill-item">
+                                        <div class="skill-info">
+                                            <h4>Data Management and Visualization</h4>
+                                            <span>85%</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 0%" data-width="85"></div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 0%" data-width="85"></div>
+                                <div class="col-md-6">
+                                    <div class="skill-item">
+                                        <div class="skill-info">
+                                            <h4>Robotics</h4>
+                                            <span>75%</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 0%" data-width="75"></div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <h4>Mobile App Development</h4>
-                                    <h4>75%</h4>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 0%" data-width="75"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <h4>Robotics</h4>
-                                    <h4>80%</h4>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 0%" data-width="80"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <h4>Graphic Design</h4>
-                                    <h4>88%</h4>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 0%" data-width="88"></div>
+                                <div class="col-md-6">
+                                    <div class="skill-item">
+                                        <div class="skill-info">
+                                            <h4>Graphic Design</h4>
+                                            <span>90%</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 0%" data-width="90"></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         
                         <!-- Hobbies -->
                         <div class="hobbies">
-                            <h3>My Hobbies</h3>
+                            <h3>My Passions</h3>
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="hobby-item">
@@ -909,101 +1509,212 @@
 
     <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio">
+        <div class="shape-1"></div>
+        <div class="shape-2"></div>
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">My Projects</h2>
+            <div class="section-title" data-aos="fade-up">
+                <h2>My Projects</h2>
+                <p>Explore my latest work across different domains — from web applications to robotics projects.</p>
+            </div>
             
             <div class="portfolio-filter" data-aos="fade-up">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="web">Web Applications</button>
-                <button class="filter-btn" data-filter="print">Print Magazines</button>
-                <button class="filter-btn" data-filter="robot">Robots</button>
+                <button class="filter-btn active" data-filter="web">Web Applications</button>
+                <button class="filter-btn" data-filter="print">Print Design</button>
+                <button class="filter-btn" data-filter="uxuics">UX/UI Case Study</button>
+                <button class="filter-btn" data-filter="robot">Robotics</button>
             </div>
             
             <div class="row">
                 <!-- Web Applications -->
-                <div class="col-md-6 col-lg-4 portfolio-item show" data-category="web" data-aos="fade-up">
+                <div class="col-md-6 col-lg-4 portfolio-item show" data-category="web" data-aos="fade-up" data-aos-delay="100">
                     <div class="portfolio-img">
-                        <img src="https://via.placeholder.com/600x400" alt="Project Image">
+                        <img src="static/Lazapee.png" alt="Project Image">
                         <div class="portfolio-overlay">
-                            <a href="#" class="portfolio-link"><i class="fas fa-link"></i></a>
-                            <a href="#" class="portfolio-zoom"><i class="fas fa-search"></i></a>
+                            <a href="https://github.com/hustinaa/LazapeebyJustineGwenElia.git" class="portfolio-link"><i class="fas fa-link"></i></a>
+                            <a href="static/Lazapee.png" class="portfolio-zoom"><i class="fas fa-search"></i></a>
                         </div>
                     </div>
                     <div class="portfolio-content">
-                        <h4>E-Learning Platform</h4>
-                        <p>Web Development, UI/UX Design</p>
+                        <h4>Lazapee Payroll Machine</h4>
+                        <p>Introductory Project to Django Framework, Querying, CRUD</p>
                     </div>
                 </div>
                 
                 <div class="col-md-6 col-lg-4 portfolio-item show" data-category="web" data-aos="fade-up" data-aos-delay="100">
                     <div class="portfolio-img">
-                        <img src="https://via.placeholder.com/600x400" alt="Project Image">
+                        <img src="static/DepressoPredictor.png" alt="Project Image">
                         <div class="portfolio-overlay">
-                            <a href="#" class="portfolio-link"><i class="fas fa-link"></i></a>
-                            <a href="#" class="portfolio-zoom"><i class="fas fa-search"></i></a>
+                            <a href="https://github.com/hustinaa/DepressoPredictor.git" class="portfolio-link"><i class="fas fa-link"></i></a>
+                            <a href="static/DepressoPredictor.png" class="portfolio-zoom"><i class="fas fa-search"></i></a>
                         </div>
                     </div>
                     <div class="portfolio-content">
-                        <h4>Social Media Dashboard</h4>
-                        <p>Front-end, Data Visualization</p>
+                        <h4>Depresso Predictor</h4>
+                        <p>KNN Model Training, Decision Tree Model Training</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 portfolio-item show" data-category="web" data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-img">
+                        <img src="static/PCOS.png" alt="Project Image">
+                        <div class="portfolio-overlay">
+                            <a href="https://github.com/hustinaa/PCOSApp.git" class="portfolio-link"><i class="fas fa-link"></i></a>
+                            <a href="static/PCOS.png" class="portfolio-zoom"><i class="fas fa-search"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h4>Meal Recommendation System for PCOS Patients</h4>
+                        <p>Search and Sort Algorithms, Filter Algorithms, Knapsack Algorithm, Greedy Algorithm</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 portfolio-item show" data-category="web" data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-img">
+                        <img src="static/cloudeats-rewards.png" alt="Project Image">
+                        <div class="portfolio-overlay">
+                            <a href="https://youtu.be/Cee5frhjxuk" class="portfolio-link"><i class="fas fa-link"></i></a>
+                            <a href="static/cloudeats-rewards.png" class="portfolio-zoom"><i class="fas fa-search"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h4>CloudEats Rewards+ (Demo Vid available!)</h4>
+                        <p>Proposed CRM & ERP Prototype for CloudEats.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 portfolio-item show" data-category="web" data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-img">
+                        <img src="static/DelPa.png" alt="Project Image">
+                        <div class="portfolio-overlay">
+                            <a href="static/DelPa.png" class="portfolio-zoom"><i class="fas fa-search"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h4>DelPa Library Information System (👷🏻‍♀️ Under Construction ⚒️)</h4>
+                        <p>Client: Del Pilar Academy Library (Cavite)</p>
+                        <p>Output: Fully functional book borrowing and returning system with MARC records</p>
                     </div>
                 </div>
                 
-                <!-- Print Magazines -->
-                <div class="col-md-6 col-lg-4 portfolio-item show" data-category="print" data-aos="fade-up" data-aos-delay="200">
+                <!-- UX/UI Design -->
+                <div class="col-md-6 col-lg-4 portfolio-item show" data-category="uxuics" data-aos="fade-up" data-aos-delay="100">
                     <div class="portfolio-img">
-                        <img src="https://via.placeholder.com/600x400" alt="Project Image">
+                        <img src="static/AISIS.jpg" alt="Project Image">
                         <div class="portfolio-overlay">
-                            <a href="#" class="portfolio-link"><i class="fas fa-link"></i></a>
-                            <a href="#" class="portfolio-zoom"><i class="fas fa-search"></i></a>
+                        <a href="magazine/AISIS.pdf" class="portfolio-link"><i class="fas fa-link"></i></a>
                         </div>
                     </div>
                     <div class="portfolio-content">
-                        <h4>Tech Magazine Layout</h4>
-                        <p>Print Design, Editorial</p>
+                        <h4>AISIS Mobile Application UI Proposal (LowFi)</h4>
+                        <p>In compliance to the course Business Application Development</p>
+                    </div>
+                </div>
+
+                <!-- Print Designs -->
+                <div class="col-md-6 col-lg-4 portfolio-item show" data-category="print" data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-img">
+                        <img src="static/MabuhaySpread.png" alt="Project Image">
+                        <div class="portfolio-overlay">
+                        <a href="magazine/DepEdKurikulum.pdf" class="portfolio-link"><i class="fas fa-link"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h4>DepEd Kurikulum Spread</h4>
+                        <p>published on the Mabuhay! Zine (Matanglawin Ateneo)</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 portfolio-item show" data-category="print" data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-img">
+                        <img src="static/Midnight.png" alt="Project Image">
+                        <div class="portfolio-overlay">
+                            <a href="magazine/Midnight Sun.pdf" class="portfolio-link"><i class="fas fa-link"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h4>Meet Me at Midnight Spread</h4>
+                        <p>published on the Golden Era's Tour Lampoon (Matanglawin Ateneo)</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 portfolio-item show" data-category="print" data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-img">
+                        <img src="static/1986.png" alt="Project Image">
+                        <div class="portfolio-overlay">
+                            <a href="magazine/1986.pdf" class="portfolio-link"><i class="fas fa-link"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h4>1986 Spread</h4>
+                        <p>published on the Golden Era's Tour Lampoon (Matanglawin Ateneo)</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 portfolio-item show" data-category="print" data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-img">
+                        <img src="static/Doblelingo.png" alt="Project Image">
+                        <div class="portfolio-overlay">
+                            <a href="magazine/Doblelingo.pdf" class="portfolio-link"><i class="fas fa-link"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h4>Doblelingo Spread</h4>
+                        <p>published on the iPot50 Lampoon (Matanglawin Ateneo)</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 portfolio-item show" data-category="print" data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-img">
+                        <img src="static/NoCash.png" alt="Project Image">
+                        <div class="portfolio-overlay">
+                            <a href="magazine/NoCash.pdf" class="portfolio-link"><i class="fas fa-link"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h4>NoCash Spread</h4>
+                        <p>published on the iPot50 Lampoon (Matanglawin Ateneo)</p>
                     </div>
                 </div>
                 
-                <div class="col-md-6 col-lg-4 portfolio-item show" data-category="print" data-aos="fade-up">
-                    <div class="portfolio-img">
-                        <img src="https://via.placeholder.com/600x400" alt="Project Image">
-                        <div class="portfolio-overlay">
-                            <a href="#" class="portfolio-link"><i class="fas fa-link"></i></a>
-                            <a href="#" class="portfolio-zoom"><i class="fas fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="portfolio-content">
-                        <h4>Art Exhibition Catalog</h4>
-                        <p>Layout Design, Typography</p>
-                    </div>
-                </div>
                 
                 <!-- Robots -->
                 <div class="col-md-6 col-lg-4 portfolio-item show" data-category="robot" data-aos="fade-up" data-aos-delay="100">
                     <div class="portfolio-img">
-                        <img src="https://via.placeholder.com/600x400" alt="Project Image">
+                        <img src="static/RESCUEBOT.jpg" alt="Project Image">
                         <div class="portfolio-overlay">
-                            <a href="#" class="portfolio-link"><i class="fas fa-link"></i></a>
-                            <a href="#" class="portfolio-zoom"><i class="fas fa-search"></i></a>
+                            <a href="static/RESCUEBOT.jpg" class="portfolio-zoom"><i class="fas fa-search"></i></a>
                         </div>
                     </div>
                     <div class="portfolio-content">
-                        <h4>Autonomous Robot</h4>
-                        <p>Robotics, Programming</p>
+                        <h4>RESCUEBOT</h4>
+                        <p>Robotics, Rasberry Pi</p>
                     </div>
                 </div>
                 
-                <div class="col-md-6 col-lg-4 portfolio-item show" data-category="robot" data-aos="fade-up" data-aos-delay="200">
+                <div class="col-md-6 col-lg-4 portfolio-item show" data-category="robot" data-aos="fade-up" data-aos-delay="100">
                     <div class="portfolio-img">
-                        <img src="https://via.placeholder.com/600x400" alt="Project Image">
+                        <img src="static/AGNUM.png" alt="Project Image">
                         <div class="portfolio-overlay">
-                            <a href="#" class="portfolio-link"><i class="fas fa-link"></i></a>
-                            <a href="#" class="portfolio-zoom"><i class="fas fa-search"></i></a>
+                            <a href="https://www.youtube.com/watch?v=ryxhY2smaw8" class="portfolio-link"><i class="fas fa-link"></i></a>
+                            <a href="static/AGNUM.png" class="portfolio-zoom"><i class="fas fa-search"></i></a>
                         </div>
                     </div>
                     <div class="portfolio-content">
-                        <h4>Robotic Arm Prototype</h4>
-                        <p>Engineering, Control Systems</p>
+                        <h4>Assistive Gloves for Neurogenic Mutism</h4>
+                        <p>Engineering, Control Systems, Robotics, Rasberry Pi</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 portfolio-item show" data-category="robot" data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-img">
+                        <img src="static/CarEngine.jpg" alt="Project Image">
+                        <div class="portfolio-overlay">
+                            <a href="static/CarEngine.jpg" class="portfolio-zoom"><i class="fas fa-search"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h4>Android Protected Car Engine</h4>
+                        <p>Physical Science, Robotics, Arduino Uno</p>
                     </div>
                 </div>
             </div>
@@ -1012,109 +1723,115 @@
 
     <!-- Awards Section -->
     <section id="awards" class="awards">
+        <div class="shape-1"></div>
+        <div class="shape-2"></div>
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Awards & Achievements</h2>
-            
-            <div class="awards-tabs" data-aos="fade-up">
-                <div class="year-tab active" data-year="2024">2024</div>
-                <div class="year-tab" data-year="2023">2023</div>
-                <div class="year-tab" data-year="2022">2022</div>
+            <div class="section-title" data-aos="fade-up">
+                <h2>Awards & Achievements</h2>
+                <p>Recognition and honors I've received for my work and contributions in various competitions.</p>
             </div>
             
-            <!-- 2024 Awards -->
-            <div class="awards-content active" id="year-2024">
-                <div class="row">
-                    <div class="col-md-6 col-lg-4" data-aos="fade-up">
-                        <div class="award-item" data-id="award1">
-                            <div class="award-img">
-                                <img src="https://via.placeholder.com/600x400" alt="Hackathon Event">
-                            </div>
-                            <div class="award-content">
-                                <h4>National Hackathon</h4>
-                                <p>March 2024</p>
-                            </div>
+            <div class="row">
+                <!-- Malaysia Technology Expo -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up">
+                    <div class="award-item" onclick="openAwardPopup('award1')">
+                        <div class="award-img">
+                            <img src="static/2018MTE.jpg" alt="Malaysia Technology Expo">
                         </div>
-                    </div>
-                    
-                    <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="award-item" data-id="award2">
-                            <div class="award-img">
-                                <img src="https://via.placeholder.com/600x400" alt="Robotics Competition">
-                            </div>
-                            <div class="award-content">
-                                <h4>Robotics Challenge</h4>
-                                <p>January 2024</p>
-                            </div>
+                        <div class="award-content">
+                            <h4>Malaysia Technology Expo (MTE)</h4>
+                            <p>2018</p>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- 2023 Awards -->
-            <div class="awards-content" id="year-2023">
-                <div class="row">
-                    <div class="col-md-6 col-lg-4" data-aos="fade-up">
-                        <div class="award-item" data-id="award3">
-                            <div class="award-img">
-                                <img src="https://via.placeholder.com/600x400" alt="Design Competition">
-                            </div>
-                            <div class="award-content">
-                                <h4>Design Excellence</h4>
-                                <p>November 2023</p>
-                            </div>
+                
+                <!-- Science Quest -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="award-item" onclick="openAwardPopup('award2')">
+                        <div class="award-img">
+                            <img src="static/Science Quest.jpg" alt="Science Quest">
                         </div>
-                    </div>
-                    
-                    <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="award-item" data-id="award4">
-                            <div class="award-img">
-                                <img src="https://via.placeholder.com/600x400" alt="Code Challenge">
-                            </div>
-                            <div class="award-content">
-                                <h4>Code Challenge</h4>
-                                <p>August 2023</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                        <div class="award-item" data-id="award5">
-                            <div class="award-img">
-                                <img src="https://via.placeholder.com/600x400" alt="Tech Festival">
-                            </div>
-                            <div class="award-content">
-                                <h4>Tech Innovation Festival</h4>
-                                <p>May 2023</p>
-                            </div>
+                        <div class="award-content">
+                            <h4>Science Quest (Local)</h4>
+                            <p>2018-2019</p>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- 2022 Awards -->
-            <div class="awards-content" id="year-2022">
-                <div class="row">
-                    <div class="col-md-6 col-lg-4" data-aos="fade-up">
-                        <div class="award-item" data-id="award6">
-                            <div class="award-img">
-                                <img src="https://via.placeholder.com/600x400" alt="Student Competition">
-                            </div>
-                            <div class="award-content">
-                                <h4>Student Tech Competition</h4>
-                                <p>October 2022</p>
-                            </div>
+                
+                <!-- Bato Balani -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="award-item" onclick="openAwardPopup('award3')">
+                        <div class="award-img">
+                            <img src="static/BatoBalani.jpg" alt="Bato Balani Competition">
+                        </div>
+                        <div class="award-content">
+                            <h4>Bato Balani Competition</h4>
+                            <p>2019</p>
                         </div>
                     </div>
-                    
-                    <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="award-item" data-id="award7">
-                            <div class="award-img">
-                                <img src="https://via.placeholder.com/600x400" alt="Science Fair">
-                            </div>
-                            <div class="award-content">
-                                <h4>Young Scientists Fair</h4>
-                                <p>April 2022</p>
-                            </div>
+                </div>
+                
+                <!-- International Invention & Trade Expo London -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up">
+                    <div class="award-item" onclick="openAwardPopup('award4')">
+                        <div class="award-img">
+                            <img src="static/ITELondon.jpg" alt="Code Challenge">
+                        </div>
+                        <div class="award-content">
+                            <h4>International Invention & Trade Expo London (ITE-London)</h4>
+                            <p>2019</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Kaoshiung International Invention & Design EXPO -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="award-item" onclick="openAwardPopup('award5')">
+                        <div class="award-img">
+                            <img src="static/2019KIDE.jpg" alt="Tech Festival">
+                        </div>
+                        <div class="award-content">
+                            <h4>Kaoshiung International Invention & Design EXPO (KIDE)</h4>
+                            <p>2019</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Global Young Scientist Challenge 2020 Edition  -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="award-item" onclick="openAwardPopup('award6')">
+                        <div class="award-img">
+                            <img src="static/GYSC.jpg" alt="Student Competition">
+                        </div>
+                        <div class="award-content">
+                            <h4>Global Young Scientist Challenge 2020 Edition (GYSC)</h4>
+                            <p>2020</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Indonesia International Applied Science Project Olympiad -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up">
+                    <div class="award-item" onclick="openAwardPopup('award7')">
+                        <div class="award-img">
+                            <img src="static/IASPO.png" alt="Science Fair">
+                        </div>
+                        <div class="award-content">
+                            <h4>Indonesia International Applied Science Project Olympiad</h4>
+                            <p>2020</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- UX Society Bootcamp -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up">
+                    <div class="award-item" onclick="openAwardPopup('award8')">
+                        <div class="award-img">
+                            <img src="static/UXSocBootcamp.jpg" alt="Science Fair">
+                        </div>
+                        <div class="award-content">
+                            <h4>UX Society Bootcamp</h4>
+                            <p>2024</p>
                         </div>
                     </div>
                 </div>
@@ -1137,8 +1854,13 @@
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
+        <div class="shape-1"></div>
+        <div class="shape-2"></div>
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
+            <div class="section-title" data-aos="fade-up">
+                <h2>Get In Touch</h2>
+                <p>Have a project in mind or just want to say hello? Feel free to reach out!</p>
+            </div>
             <div class="row justify-content-center">
                 <div class="col-lg-8" data-aos="fade-up">
                     <div class="contact-form">
@@ -1156,26 +1878,25 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Subject" required>
+                            </div>
+                            <div class="form-group">
                                 <textarea class="form-control" placeholder="Your Message" required></textarea>
                             </div>
                             <button type="submit" class="btn-custom">Send Message</button>
                         </form>
                     </div>
-                    
-                    <div class="social-links">
-                        <a href="#" class="social-link" title="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="#" class="social-link" title="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="social-link" title="Twitter">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-link" title="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="https://github.com/hustinaa" class="social-link" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/evorajustine/" class="social-link" title="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://www.facebook.com/evorajustine10/" class="social-link" title="Facebook">
+                        <i class="fab fa-twitter"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -1184,110 +1905,165 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 Your Name. All Rights Reserved.</p>
+            <p>&copy; 2025 Justine Evora. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: var(--yellow);"></i></p>
         </div>
     </footer>
 
     <!-- Awards Data -->
     <script>
-        // Store awards data
-        const awardsData = {
-            award1: {
-                title: "National Hackathon",
-                awards: [
-                    { 
-                        title: "First Place", 
-                        description: "Best innovative solution in the competition"
-                    },
-                    { 
-                        title: "Best UI Design", 
-                        description: "Recognition for exceptional user interface design"
-                    }
-                ]
-            },
-            award2: {
-                title: "Robotics Challenge",
-                awards: [
-                    { 
-                        title: "Second Place", 
-                        description: "Runner-up in the autonomous robot category"
-                    },
-                    { 
-                        title: "Technical Innovation Award", 
-                        description: "For innovative sensor implementation"
-                    }
-                ]
-            },
-            award3: {
-                title: "Design Excellence",
-                awards: [
-                    { 
-                        title: "Gold Medal", 
-                        description: "First place in the digital design category"
-                    },
-                    { 
-                        title: "People's Choice Award", 
-                        description: "Voted as favorite by attendees"
-                    }
-                ]
-            },
-            award4: {
-                title: "Code Challenge",
-                awards: [
-                    { 
-                        title: "First Place", 
-                        description: "Best solution for algorithm challenge"
-                    },
-                    { 
-                        title: "Efficiency Award", 
-                        description: "Most efficient code implementation"
-                    }
-                ]
-            },
-            award5: {
-                title: "Tech Innovation Festival",
-                awards: [
-                    { 
-                        title: "Bronze Medal", 
-                        description: "Third place in student category"
-                    },
-                    { 
-                        title: "Creativity Award", 
-                        description: "Most creative approach to problem-solving"
-                    }
-                ]
-            },
-            award6: {
-                title: "Student Tech Competition",
-                awards: [
-                    { 
-                        title: "Second Place", 
-                        description: "Runner-up in the web development category"
-                    },
-                    { 
-                        title: "Best Mobile Design", 
-                        description: "Award for responsive design implementation"
-                    }
-                ]
-            },
-            award7: {
-                title: "Young Scientists Fair",
-                awards: [
-                    { 
-                        title: "First Place", 
-                        description: "Best project in technology category"
-                    },
-                    { 
-                        title: "Innovation Award", 
-                        description: "Most innovative approach to scientific problem"
-                    },
-                    { 
-                        title: "Mentor's Choice", 
-                        description: "Selected by panel of industry mentors"
-                    }
-                ]
-            }
-        };
+    // Store awards data
+    const awardsData = {
+        award1: {
+            title: "Malaysia Technology Expo (MTE)",
+            awards: [
+                { 
+                    title: "Gold Medal", 
+                    description: "Innovation Award for the RESCUEBOT project"
+                },
+                { 
+                    title: "Malaysian Association of Creativity & Innovation (MACRI) Award", 
+                    description: "Special Award for RESCUEBOT project"
+                },
+                { 
+                    title: "Indonesian Invention and Innovation Promotion Association (INNOPA) Award", 
+                    description: "Special Award for RESCUEBOT project"
+                }
+            ]
+        },
+        award2: {
+            title: "Science Quest (Local)",
+            awards: [
+                { 
+                    title: "1st Place", 
+                    description: "2018 National Science Quest (Robotics Project Group): RESCUEBOT"
+                },
+                { 
+                    title: "2nd Place", 
+                    description: "2018 Regional Science Quest (Robotics Project Group): RESCUEBOT"
+                },
+                { 
+                    title: "2nd Place", 
+                    description: "2018 Division Science Quest (Robotics Project Group): RESCUEBOT"
+                },
+                { 
+                    title: "2nd Place", 
+                    description: "2019 Division Science Quest (Physical Science Individual): Android Protected Car Engine"
+                }
+            ]
+        },
+        award3: {
+            title: "Bato Balani Competition",
+            awards: [
+                { 
+                    title: "3rd Place", 
+                    description: "For the project RESCUEBOT"
+                }
+            ]
+        },
+        award4: {
+            title: "International Invention & Trade Expo London (ITE-London)",
+            awards: [
+                { 
+                    title: "Gold Medal", 
+                    description: "Innovation Award for the RESCUEBOT project"
+                },
+                { 
+                    title: "Platinum Award (Highest Award)", 
+                    description: "Special Award from the ITE Organization"
+                },
+                { 
+                    title: "World Invention Intellectual Property Association (WIIPA) Grand Award", 
+                    description: "Special Award from the WIIPA Organization"
+                }
+            ]
+        },
+        award5: {
+            title: "Kaoshiung International Invention & Design EXPO (KIDE)",
+            awards: [
+                { 
+                    title: "Bronze Medal", 
+                    description: "Innovation Award for the AGNUM project"
+                },
+                { 
+                    title: "Sri Ramakrishna Institute of Technology (SRIT) Special Award", 
+                    description: "Special Award for the AGNUM project"
+                },
+                { 
+                    title: "International Youngest Innovator Award", 
+                    description: "Special Award for Jamie Evora and Justine Evora"
+                },
+                { 
+                    title: "Krya.id Special Award", 
+                    description: "Special Award for the AGNUM project"
+                },
+                { 
+                    title: "Special Honor of Invention", 
+                    description: "Special Award for the AGNUM project"
+                },
+                { 
+                    title: "Indonesian Invention and Innovation Promotion Association (INNOPA) Award", 
+                    description: "Special Award for the AGNUM project"
+                },
+            ]
+        },
+        award6: {
+            title: "Global Young Scientist Challenge 2020 Edition (GYSC)",
+            awards: [
+                { 
+                    title: "Gold Medal", 
+                    description: "Innovation Award for the AGNUM project"
+                }
+            ]
+        },
+        award7: {
+            title: "Indonesia International Applied Science Project Olympiad",
+            awards: [
+                { 
+                    title: "Gold Medal", 
+                    description: "Innovation Award for the AGNUM project"
+                }
+            ]
+        },
+        award8: {
+            title: "UX Society Bootcamp",
+            awards: [
+                { 
+                    title: "Best in Presentation", 
+                    description: "Special Award for the UX/UI Case Study on the Website Revamp of Lipton"
+                }
+            ]
+        }
+    };
+
+    // Define the openAwardPopup function globally
+    function openAwardPopup(awardId) {
+        var awardData = awardsData[awardId];
+        
+        // Set popup title
+        document.getElementById('popupTitle').textContent = awardData.title;
+        
+        // Clear and add awards
+        var awardsList = document.getElementById('awardsList');
+        awardsList.innerHTML = '';
+        
+        for(var i = 0; i < awardData.awards.length; i++) {
+            var award = awardData.awards[i];
+            var awardItem = '<div class="award-list-item">' +
+                '<div class="award-icon">' +
+                '<i class="fas fa-medal"></i>' +
+                '</div>' +
+                '<div class="award-details">' +
+                '<h5>' + award.title + '</h5>' +
+                '<p>' + award.description + '</p>' +
+                '</div>' +
+                '</div>';
+            
+            awardsList.innerHTML += awardItem;
+        }
+        
+        // Open popup
+        document.getElementById('awardsPopup').classList.add('open');
+    }
     </script>
 
     <!-- JavaScript Libraries -->
@@ -1321,7 +2097,7 @@
                     const hash = this.hash;
                     
                     $('html, body').animate({
-                        scrollTop: $(hash).offset().top - 70
+                        scrollTop: $(hash).offset().top - 80
                     }, 800);
                 }
             });
@@ -1355,50 +2131,17 @@
                 $('#year-' + year).addClass('active');
             });
             
-            // Awards popup
-            $('.award-item').on('click', function() {
-                const awardId = $(this).data('id');
-                const awardData = awardsData[awardId];
-                
-                if (awardData) {
-                    // Set title
-                    $('#popupTitle').text(awardData.title);
-                    
-                    // Clear and add awards
-                    $('#awardsList').empty();
-                    
-                    awardData.awards.forEach(award => {
-                        const awardItem = `
-                            <div class="award-list-item">
-                                <div class="award-icon">
-                                    <i class="fas fa-medal"></i>
-                                </div>
-                                <div class="award-details">
-                                    <h5>${award.title}</h5>
-                                    <p>${award.description}</p>
-                                </div>
-                            </div>
-                        `;
-                        
-                        $('#awardsList').append(awardItem);
-                    });
-                    
-                    // Open popup
-                    $('#awardsPopup').addClass('open');
-                }
-            });
-            
-            // Close popup
-            $('.popup-close').on('click', function() {
-                $('#awardsPopup').removeClass('open');
-            });
+            // Close popup when clicking the close button
+            document.querySelector('.popup-close').onclick = function() {
+                document.getElementById('awardsPopup').classList.remove('open');
+            };
             
             // Close popup when clicking outside
-            $(document).on('click', function(e) {
-                if ($(e.target).is('#awardsPopup')) {
-                    $('#awardsPopup').removeClass('open');
+            document.getElementById('awardsPopup').onclick = function(e) {
+                if (e.target === this) {
+                    this.classList.remove('open');
                 }
-            });
+            };
             
             // Animate skill bars
             function animateSkills() {
@@ -1449,7 +2192,7 @@
                 if (isValid) {
                     // Here you would typically send the form data to a server
                     // For demo purposes, we'll just show a success message
-                    $(this).html('<div class="text-center"><h4 class="text-success">Message sent successfully!</h4><p>Thank you for contacting me. I will get back to you soon.</p></div>');
+                    $(this).html('<div class="text-center"><h4 style="color:var(--yellow);font-size:1.5rem;margin-bottom:15px;">Message Sent Successfully!</h4><p>Thank you for reaching out. I\'ll get back to you very soon.</p></div>');
                 }
             });
             
@@ -1470,18 +2213,6 @@
             $(window).on('load', function() {
                 $('body').addClass('loaded');
             });
-            
-            // Portfolio item hover effect for mobile
-            if (window.matchMedia('(max-width: 767px)').matches) {
-                $('.portfolio-item').on('click', function(e) {
-                    if (!$(e.target).is('a')) {
-                        $(this).find('.portfolio-overlay').css('opacity', '1');
-                        setTimeout(() => {
-                            $(this).find('.portfolio-overlay').css('opacity', '0');
-                        }, 2000);
-                    }
-                });
-            }
         });
     </script>
 </body>
