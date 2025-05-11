@@ -932,14 +932,18 @@
         .popup-inner {
             width: 90%;
             max-width: 700px;
+            height: 80vh; /* Fixed height as percentage of viewport height */
+            max-height: 600px; /* Maximum height in pixels */
             background-color: var(--white);
             border-radius: var(--border-radius-lg);
-            padding: 50px;
+            padding: 30px;
             position: relative;
             transform: scale(0.8);
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             box-shadow: var(--shadow-lg);
-            overflow: hidden;
+            overflow: hidden; /* Hide overflow for rounded corners */
+            display: flex;
+            flex-direction: column; /* Stack children vertically */
         }
         
         .popup-inner::before {
@@ -955,11 +959,33 @@
         .awards-popup.open .popup-inner {
             transform: scale(1);
         }
+
+        #awardsList {
+            overflow-y: auto; /* Enable vertical scrolling */
+            padding-right: 10px; /* Add some padding for the scrollbar */
+            flex: 1; /* Take up remaining space */
+            margin-bottom: 10px; /* Add some space at the bottom */
+        }
         
+        
+        #awardsList::-webkit-scrollbar {
+            width: 8px;
+        }
+       
+        #awardsList::-webkit-scrollbar-track {
+            background: var(--light-gray);
+            border-radius: 10px;
+        }
+
+        #awardsList::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 10px;
+        }
+
         .popup-close {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 15px;
+            right: 15px;
             width: 45px;
             height: 45px;
             background-color: var(--light-gray);
@@ -969,7 +995,7 @@
             justify-content: center;
             cursor: pointer;
             transition: var(--transition);
-            z-index: 2;
+            z-index: 3;
         }
         
         .popup-close:hover {
@@ -982,11 +1008,13 @@
         }
         
         .popup-title {
-            text-align: center;
-            margin-bottom: 40px;
+            position: sticky;
+            top: 0;
+            background-color: var(--white);
+            margin-bottom: 20px;
             padding-bottom: 20px;
             border-bottom: 1px solid var(--light-gray);
-            position: relative;
+            z-index: 2;
         }
         
         .popup-title h3 {
