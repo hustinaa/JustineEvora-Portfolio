@@ -1546,7 +1546,8 @@
             </div>
             
             <div class="portfolio-filter" data-aos="fade-up">
-                <button class="filter-btn active" data-filter="web">Web Applications</button>
+                <button class="filter-btn active" data-filter="web">All Projects</button>
+                <button class="filter-btn" data-filter="web">Web Applications</button>
                 <button class="filter-btn" data-filter="print">Print Design</button>
                 <button class="filter-btn" data-filter="uxuics">UX/UI Case Study</button>
                 <button class="filter-btn" data-filter="robot">Robotics</button>
@@ -1564,7 +1565,8 @@
                     </div>
                     <div class="portfolio-content">
                         <h4>Lazapee Payroll Machine</h4>
-                        <p>Introductory Project to Django Framework, Querying, CRUD</p>
+                        <p>Introductory Project to Web Frameworks, Querying, CRUD</p>
+                        <p>Django Web Application, Python, HTML, CSS</p>
                     </div>
                 </div>
                 
@@ -1579,6 +1581,7 @@
                     <div class="portfolio-content">
                         <h4>Depresso Predictor</h4>
                         <p>KNN Model Training, Decision Tree Model Training</p>
+                        <p>Django Web Application, Python, HTML, CSS, DBSQLite</p>
                     </div>
                 </div>
 
@@ -1593,6 +1596,7 @@
                     <div class="portfolio-content">
                         <h4>Meal Recommendation System for PCOS Patients</h4>
                         <p>Search and Sort Algorithms, Filter Algorithms, Knapsack Algorithm, Greedy Algorithm</p>
+                        <p>Django Web Application, Python, HTML, CSS, DBSQLite</p>
                     </div>
                 </div>
 
@@ -1607,6 +1611,7 @@
                     <div class="portfolio-content">
                         <h4>CloudEats Rewards+ (Demo Vid available!)</h4>
                         <p>Proposed CRM & ERP Prototype for CloudEats.</p>
+                        <p>Django Web Application, Python, HTML, CSS</p>
                     </div>
                 </div>
 
@@ -1621,6 +1626,7 @@
                         <h4>DelPa Library Information System (👷🏻‍♀️ Under Construction ⚒️)</h4>
                         <p>Client: Del Pilar Academy Library (Cavite)</p>
                         <p>Output: Fully functional book borrowing and returning system with MARC records</p>
+                        <p>Django Web Application, Python, HTML, CSS, MySQL</p>
                     </div>
                 </div>
                 
@@ -1635,6 +1641,7 @@
                     <div class="portfolio-content">
                         <h4>AISIS Mobile Application UI Proposal (LowFi)</h4>
                         <p>In compliance to the course Business Application Development</p>
+                        <p>Figma, Canva</p>
                     </div>
                 </div>
 
@@ -1649,6 +1656,7 @@
                     <div class="portfolio-content">
                         <h4>DepEd Kurikulum Spread</h4>
                         <p>published on the Mabuhay! Zine (Matanglawin Ateneo)</p>
+                        <p>Adobe Photoshop, Adobe InDesign</p>
                     </div>
                 </div>
 
@@ -1662,6 +1670,7 @@
                     <div class="portfolio-content">
                         <h4>Meet Me at Midnight Spread</h4>
                         <p>published on the Golden Era's Tour Lampoon (Matanglawin Ateneo)</p>
+                        <p>Adobe Photoshop, Adobe InDesign</p>
                     </div>
                 </div>
 
@@ -1675,6 +1684,7 @@
                     <div class="portfolio-content">
                         <h4>1986 Spread</h4>
                         <p>published on the Golden Era's Tour Lampoon (Matanglawin Ateneo)</p>
+                        <p>Adobe Photoshop, Adobe InDesign</p>
                     </div>
                 </div>
 
@@ -1688,6 +1698,7 @@
                     <div class="portfolio-content">
                         <h4>Doblelingo Spread</h4>
                         <p>published on the iPot50 Lampoon (Matanglawin Ateneo)</p>
+                        <p>Adobe Photoshop, Adobe InDesign</p>
                     </div>
                 </div>
 
@@ -1701,6 +1712,7 @@
                     <div class="portfolio-content">
                         <h4>NoCash Spread</h4>
                         <p>published on the iPot50 Lampoon (Matanglawin Ateneo)</p>
+                        <p>Adobe Photoshop, Adobe InDesign</p>
                     </div>
                 </div>
                 
@@ -1715,7 +1727,7 @@
                     </div>
                     <div class="portfolio-content">
                         <h4>RESCUEBOT</h4>
-                        <p>Robotics, Rasberry Pi</p>
+                        <p>Robotics, Raspberry Pi</p>
                     </div>
                 </div>
                 
@@ -1729,7 +1741,7 @@
                     </div>
                     <div class="portfolio-content">
                         <h4>Assistive Gloves for Neurogenic Mutism</h4>
-                        <p>Engineering, Control Systems, Robotics, Rasberry Pi</p>
+                        <p>Engineering, Control Systems, Robotics, Raspberry Pi</p>
                     </div>
                 </div>
 
@@ -1780,7 +1792,7 @@
                             <img src="static/Science Quest.jpg" alt="Science Quest">
                         </div>
                         <div class="award-content">
-                            <h4>Science Quest (Local)</h4>
+                            <h4> Local Science Quests</h4>
                             <p>2018-2019</p>
                         </div>
                     </div>
@@ -2115,156 +2127,181 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     
     <!-- Custom JavaScript -->
-    <script>
-        $(document).ready(function() {
-            // Initialize AOS animation
-            AOS.init({
-                duration: 800,
-                easing: 'ease-in-out',
-                once: true
-            });
+     <script>
+    $(document).ready(function() {
+        // Initialize AOS animation with improved settings
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: false, // Changed to false to allow animations to trigger again on filtering
+            disable: 'mobile', // Disable on mobile for better performance
+            startEvent: 'DOMContentLoaded',
+            offset: 120 // Slightly increased offset for better visibility
+        });
+        
+        // Navbar scroll
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 50) {
+                $('.navbar').addClass('scrolled');
+            } else {
+                $('.navbar').removeClass('scrolled');
+            }
             
-            // Navbar scroll
-            $(window).scroll(function() {
-                if ($(this).scrollTop() > 50) {
-                    $('.navbar').addClass('scrolled');
-                } else {
-                    $('.navbar').removeClass('scrolled');
-                }
-            });
-            
-            // Smooth scrolling
-            $('a.nav-link, a.btn-custom').on('click', function(e) {
-                if (this.hash !== '') {
-                    e.preventDefault();
-                    const hash = this.hash;
-                    
-                    $('html, body').animate({
-                        scrollTop: $(hash).offset().top - 80
-                    }, 800);
-                }
-            });
-            
-            // Portfolio filtering
-            $('.filter-btn').on('click', function() {
-                // Active button
-                $('.filter-btn').removeClass('active');
-                $(this).addClass('active');
+            // Refresh AOS on scroll to catch elements that become visible
+            AOS.refresh();
+        });
+        
+        // Smooth scrolling
+        $('a.nav-link, a.btn-custom').on('click', function(e) {
+            if (this.hash !== '') {
+                e.preventDefault();
+                const hash = this.hash;
                 
-                // Filtering
-                const filterValue = $(this).data('filter');
-                
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top - 80
+                }, 800);
+            }
+        });
+        
+        // Make sure all web items are visible when the page loads
+        $('.portfolio-item[data-category="web"]').addClass('show');
+        
+        // Portfolio filtering with improved reliability
+        $('.filter-btn').on('click', function() {
+            // Active button
+            $('.filter-btn').removeClass('active');
+            $(this).addClass('active');
+            
+            // Filtering with delay to ensure animations complete
+            const filterValue = $(this).data('filter');
+            
+            $('.portfolio-item').removeClass('show');
+            
+            // Small delay to ensure DOM updates
+            setTimeout(function() {
                 if (filterValue === 'all') {
                     $('.portfolio-item').addClass('show');
                 } else {
-                    $('.portfolio-item').removeClass('show');
                     $('.portfolio-item[data-category="' + filterValue + '"]').addClass('show');
                 }
-            });
-            
-            // Year tabs
-            $('.year-tab').on('click', function() {
-                // Active tab
-                $('.year-tab').removeClass('active');
-                $(this).addClass('active');
                 
-                // Show content
-                const year = $(this).data('year');
-                $('.awards-content').removeClass('active');
-                $('#year-' + year).addClass('active');
-            });
+                // Refresh AOS animations
+                AOS.refresh();
+            }, 50);
+        });
+        
+        // Year tabs
+        $('.year-tab').on('click', function() {
+            // Active tab
+            $('.year-tab').removeClass('active');
+            $(this).addClass('active');
             
-            // Close popup when clicking the close button
-            document.querySelector('.popup-close').onclick = function() {
-                document.getElementById('awardsPopup').classList.remove('open');
-            };
-            
-            // Close popup when clicking outside
-            document.getElementById('awardsPopup').onclick = function(e) {
-                if (e.target === this) {
-                    this.classList.remove('open');
-                }
-            };
-            
-            // Animate skill bars
-            function animateSkills() {
-                $('.progress-bar').each(function() {
-                    const width = $(this).data('width');
-                    $(this).animate({ width: width + '%' }, 1500);
-                });
+            // Show content
+            const year = $(this).data('year');
+            $('.awards-content').removeClass('active');
+            $('#year-' + year).addClass('active');
+        });
+        
+        // Close popup when clicking the close button
+        $('.popup-close').on('click', function() {
+            $('#awardsPopup').removeClass('open');
+        });
+        
+        // Close popup when clicking outside
+        $('#awardsPopup').on('click', function(e) {
+            if (e.target === this) {
+                $(this).removeClass('open');
             }
-            
-            // Trigger skill animation when About section is in view
-            const skillsSection = document.querySelector('.skills');
-            let skillsAnimated = false;
-            
-            $(window).on('scroll', function() {
-                if (!skillsAnimated && isInViewport(skillsSection)) {
-                    animateSkills();
-                    skillsAnimated = true;
-                }
+        });
+        
+        // Animate skill bars
+        function animateSkills() {
+            $('.progress-bar').each(function() {
+                const width = $(this).data('width');
+                $(this).animate({ width: width + '%' }, 1500);
             });
-            
-            // Check if element is in viewport
-            function isInViewport(element) {
-                if (!element) return false;
-                const rect = element.getBoundingClientRect();
-                return (
-                    rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-                    rect.bottom >= 0
-                );
-            }
-            
-            // Contact form submission
-            $('#contactForm').on('submit', function(e) {
-                // Form validation
-                const formFields = $(this).find('.form-control');
-                let isValid = true;
-                
-                formFields.each(function() {
-                    if ($(this).val().trim() === '') {
-                        $(this).addClass('is-invalid');
-                        isValid = false;
-                    } else {
-                        $(this).removeClass('is-invalid').addClass('is-valid');
-                    }
-                });
-                
-                if (!isValid) {
-                    e.preventDefault(); // Prevent form submission if validation fails
-                    return false;
-                }
-                
-                // If using ajax instead of form action, you would add your ajax code here
-                // The current implementation uses formsubmit.co's direct form submission
-                
-                // Show loading state if needed
-                $(this).find('button[type="submit"]').html('<i class="fas fa-spinner fa-spin"></i> Sending...');
-                
-                // Since we're using formsubmit.co's direct form submission,
-                // we don't need to prevent the default form submission
-                // The form will automatically redirect to the _next URL after submission
-            });
-
-            // Reset form validation on input
-            $('.form-control').on('input', function() {
-                if ($(this).val().trim() !== '') {
-                    $(this).removeClass('is-invalid');
-                }
-            });
-
-            
-            // Check if skills are in viewport on page load
-            if (isInViewport(skillsSection)) {
+        }
+        
+        // Trigger skill animation when About section is in view
+        const skillsSection = document.querySelector('.skills');
+        let skillsAnimated = false;
+        
+        $(window).on('scroll', function() {
+            if (!skillsAnimated && isInViewport(skillsSection)) {
                 animateSkills();
                 skillsAnimated = true;
             }
-            
-            // Preloader
-            $(window).on('load', function() {
-                $('body').addClass('loaded');
-            });
         });
+        
+        // Check if element is in viewport
+        function isInViewport(element) {
+            if (!element) return false;
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.bottom >= 0
+            );
+        }
+        
+        // Contact form submission
+        $('#contactForm').on('submit', function(e) {
+            // Form validation
+            const formFields = $(this).find('.form-control');
+            let isValid = true;
+            
+            formFields.each(function() {
+                if ($(this).val().trim() === '') {
+                    $(this).addClass('is-invalid');
+                    isValid = false;
+                } else {
+                    $(this).removeClass('is-invalid').addClass('is-valid');
+                }
+            });
+            
+            if (!isValid) {
+                e.preventDefault(); // Prevent form submission if validation fails
+                return false;
+            }
+            
+            // Show loading state
+            $(this).find('button[type="submit"]').html('<i class="fas fa-spinner fa-spin"></i> Sending...');
+        });
+    
+        // Reset form validation on input
+        $('.form-control').on('input', function() {
+            if ($(this).val().trim() !== '') {
+                $(this).removeClass('is-invalid');
+            }
+        });
+        
+        // Check if skills are in viewport on page load
+        if (isInViewport(skillsSection)) {
+            animateSkills();
+            skillsAnimated = true;
+        }
+        
+        // Preloader
+        $(window).on('load', function() {
+            $('body').addClass('loaded');
+            
+            // Ensure portfolio items are visible after page fully loads
+            setTimeout(function() {
+                if ($('.filter-btn.active').length > 0) {
+                    const activeFilter = $('.filter-btn.active').data('filter');
+                    if (activeFilter === 'all') {
+                        $('.portfolio-item').addClass('show');
+                    } else {
+                        $('.portfolio-item[data-category="' + activeFilter + '"]').addClass('show');
+                    }
+                } else {
+                    // Default to showing web items if no filter is active
+                    $('.portfolio-item[data-category="web"]').addClass('show');
+                }
+                // Final AOS refresh after everything is loaded
+                AOS.refresh();
+            }, 100);
+        });
+    });
     </script>
 </body>
 </html>
